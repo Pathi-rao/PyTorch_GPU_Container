@@ -1,0 +1,5 @@
+opencv-python
+pandas 
+petastorm
+ipykernel
+petastorm[opencv]
