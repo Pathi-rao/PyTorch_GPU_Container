@@ -1,9 +1,5 @@
 # ref: https://github.com/Simbotic/rust-gst-pytorch-gpu/blob/master/.devcontainer/Dockerfile
 
-# this specific version gives thé warning - 
-# UserWarning: NVIDIA GeForce RTX 3060 Ti with CUDA capability sm_86 is not compatible with the current PyTorch installation.
-# FROM pytorch/pytorch:1.9.0-cuda10.2-cudnn7-devel
-
 FROM pytorch/pytorch:1.10.0-cuda11.3-cudnn8-devel
 # FROM creates a layer from the Docker image and we use this image as a base image
 
@@ -49,11 +45,14 @@ COPY ./.devcontainer/requirements.txt requirements.txt
 RUN python -m pip install -r requirements.txt
 RUN python -m pip install boto3
 RUN python -m pip install pyspark
+RUN python -m pip install torchmeta
+RUN python -m pip install ipywidgets
 RUN python -m pip install mkdocs-material
 
 
-#Pytorch
-RUN python -m pip install torch torchvision
+# if you are using torchmeta, somehow it overrides the torch version
+# so, specify it again so that it is compatible with Nvidia 3060Ti GPU or another that uses sm_86
+RUN python -m pip install torch==1.10.0+cu113 torchvision==0.11.1+cu113 torchaudio==0.10.0+cu113 -f https://download.pytorch.org/whl/cu113/torch_stable.html
 
 # """
 
