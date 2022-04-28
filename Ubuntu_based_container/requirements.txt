@@ -1,0 +1,10 @@
+tqdm==4.51.0
+numpy==1.19.3
+torch==1.7.1
+torchvision==0.8.2
+Augmentor
+tqdm
+fire
+wget
+prettytable
+
