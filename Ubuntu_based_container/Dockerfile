@@ -25,7 +25,7 @@ RUN conda create -y -n siamese_conda_env python=3.9
 # copy our entire code from local machine to a src folder in container
 COPY . src/
 
-
+# activate the env and install the requirements
 RUN /bin/bash -c "cd src \
     && source activate siamese_conda_env \
     && pip install -r requirements.txt"
